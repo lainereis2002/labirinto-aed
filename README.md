@@ -1,15 +1,5 @@
 <h1 align="center">🐈‍⬛☕️🎩🃏Wonderland Maze🫖🍄⏱️🐇</h1>
 
-<p align="center">
-    <a href="#📖Narrativa">Narrativa</a> •
-    <a href="#🎯Objetivo-do-Jogo">Objetivo</a> • 
-    <a href="#✔️Pr-e-requisitos">Pré-requisitos</a> • 
-    <a href="#🛠Tecnologias">Tecnologias</a> • 
-    <a href="#🤝Autoras">Autoras</a>
-</p>
-
----
-
 ### 📖Narrativa
 Você já ouviu falar em labirinto? Labirinto é uma construção do qual é difícil sair, devido ao elevado número de divisões que se entrecruzam. A lógica usada para achar a saída desse local foi utilizada no filme Alice no país das maravilhas, você lembra? Alice, a personagem principal, se perde em um jardim do seu “novo país” e encontra um gato sorridente, ao qual pede ajuda. O famoso diálogo ocorre:
 <p align="center">Alice - “Você pode me ajudar?” </p>
