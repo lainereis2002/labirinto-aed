@@ -1,11 +1,11 @@
 <h1 align="center">🐈‍⬛☕️🎩🃏Wonderland Maze🫖🍄⏱️🐇</h1>
 
 <p align="center">
- <a href="### 📖Narrativa">Narrativa</a> •
- <a href="### 🎯Objetivo do Jogo">Objetivo</a> • 
- <a href="### ✔️Pré-requisitos">Pré-requisitos</a> • 
- <a href="### 🛠 Tecnologias">Tecnologias</a> • 
- <a href="### 🤝Autoras">Autoras</a>
+ <a href="###-📖Narrativa">Narrativa</a> •
+ <a href="###-🎯Objetivo-do-Jogo">Objetivo</a> • 
+ <a href="###-✔️Pr-e-requisitos">Pré-requisitos</a> • 
+ <a href="###-🛠 Tecnologias">Tecnologias</a> • 
+ <a href="###-🤝Autoras">Autoras</a>
 </p>
 
 ---
