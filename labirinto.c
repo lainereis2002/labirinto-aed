@@ -48,20 +48,27 @@ int main() {
   inserirArvore(&raiz, 87);
   Arvore *raizOriginal = raiz;
 
-  printf("Bem-vindo ao labirinto do País das Maravilhas!!!\n");
-  printf("A Alice está perdida e precisa de sua ajuda para voltar pra casa em segurança.\n");
-  printf("Você terá 5 chances para ajudá-la. Caso o contrário, a Rainha de Copas te matará!\n");
-  printf("Boa sorte, jogador!\n");
+  printf("     __          __             _           _                 _   __  __               \n");
+  printf("     \\ \\        / /            | |         | |               | | |  \\/  |              \n");
+  printf("      \\ \\  /\\  / /__  _ __   __| | ___ _ __| | __ _ _ __   __| | | \\  / | __ _ _______ \n");
+  printf("       \\ \\/  \\/ / _ \\| '_ \\ / _` |/ _ \\ '__| |/ _` | '_ \\ / _` | | |\\/| |/ _` |_  / _ \\\n");
+  printf("        \\  /\\  / (_) | | | | (_| |  __/ |  | | (_| | | | | (_| | | |  | | (_| |/ /  __/\n");
+  printf("         \\/  \\/ \\___/|_| |_|\\__,_|\\___|_|  |_|\\__,_|_| |_|\\__,_| |_|  |_|\\__,_/___\\___|\n");
   printf("\n");
 
-  printf("           - 101 -\n");
-  printf("          /       \\\n");
-  printf("         /         \\\n");
-  printf("    -  55          125  -\n");
-  printf("     /   \\        /   \\\n");
-  printf("   10    73      6     7\n");
-  printf("   / \\   / \\    / \\   / \\\n");
-  printf("  7  20 60  87 10 20 139 155\n");
+  printf("                                      !!!Bem-vindo!!!\n");
+  printf("A Alice esta perdida e precisa de sua ajuda para voltar pra casa em seguranca.\n");
+  printf("Voce tera 5 chances para ajuda-la. Caso o contrario, a Rainha de Copas te matara!\n");
+  printf("Boa sorte, jogador!\n");
+
+  printf("                                         - 101 -\n");
+  printf("                                        /       \\\n");
+  printf("                                       /         \\\n");
+  printf("                                  -  55           125  -\n");
+  printf("                                   /   \\         /   \\\n");
+  printf("                                  10   73      117    140\n");
+  printf("                                 / \\   / \\     / \\    / \\\n");
+  printf("                                7  20 60  87 110 120 139 155\n");
 
   inserirFila(&head, &tail, 101); // inserindo a raiz como primeiro elementa da fila
 
@@ -79,12 +86,12 @@ int main() {
     percorrerArvore(&raiz, raizOriginal, &head, &tail, escolha, &vidas); // percorrer
 
     if (venceu) {
-      printf("Parabéns, você chegou ao fim do labirinto!\n");
-      printf("Alice chegou em segurança em casa.\n");
-      printf("VOCÊ VENCEU O JOGO!!!\n");
+      printf("Parabens, voce chegou ao fim do labirinto!\n");
+      printf("Alice chegou em seguranca em casa.\n");
+      printf("VOCE VENCEU O JOGO!!!\n");
       
-      printf("\nAqui está o caminho certo do labirinto de forma ordenada.\n");
-      printf("Agora você pode jogar na Mega da Virada :)\n");
+      printf("\nAqui esta o caminho certo do labirinto de forma ordenada.\n");
+      printf("Agora voce pode jogar na Mega da Virada :)\n");
       ordenarFila(&head); // chama a função para ordenar a fila
       imprimirFila(head); // imprime a fila ordenada
       
@@ -94,7 +101,7 @@ int main() {
     }
 
     if (vidas <= 0) {
-      printf("Você perdeu todas as vidas. A Rainha de Copas te pegou!\n");
+      printf("Voce perdeu todas as vidas. A Rainha de Copas te pegou!\n");
       liberarArvore(raiz);
       destruirFila(head);
       break;
@@ -213,7 +220,7 @@ void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **ta
   inserirFila(head, tail, (*raiz)->num);
 
   if ((*raiz)->num % 2 == 0) { // se o num for par
-    printf("Você errou o caminho, voltando para o início do labirinto.\n");
+    printf("Voce errou o caminho, voltando para o inicio do labirinto.\n");
     imprimirFila(*head);
 
     destruirFila(*head);
@@ -224,7 +231,7 @@ void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **ta
     inserirFila(head, tail, raizOriginal->num); // reinsere a raiz original na fila para a próxima tentativa
 
     (*vidas)--;
-    printf("Você tem %d vidas restantes.\n", *vidas);
+    printf("Voce tem %d vidas restantes.\n", *vidas);
 
   } else {
     imprimirFila(*head); // imprime a fila se o usuário não errou
