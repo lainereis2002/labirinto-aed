@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <Windows.h>
+#include <unistd.h>
 bool venceu; // para indicar se venceu ou não
 
 //-------------- FILA ---------------
@@ -109,6 +111,7 @@ int main() {
   }
   liberarArvore(raiz);
   destruirFila(head);
+  sleep(5000);
   return 0;
 }
 
@@ -235,6 +238,6 @@ void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **ta
 
   } else {
     imprimirFila(*head); // imprime a fila se o usuário não errou
-    printf("Voce está indo bem! continue assim.\n");
+    printf("Voce esta indo bem! continue assim.\n");
   }
 }
