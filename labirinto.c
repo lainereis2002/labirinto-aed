@@ -20,13 +20,15 @@ typedef struct Arvore{
 } Arvore;
 void inserirArvore (Arvore **raiz, int n); //inserir nó na árvore
 void liberarArvore (Arvore *raiz); //liberar a árvore
-void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha); //percorrer e verificar as escolhas dentro da árvore
+void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha, int *vidas); //percorrer e verificar as escolhas dentro da árvore
 
 //-------------- MAIN --------------
 int main(){
   Arvore *raiz = NULL; // criação da arvore - struct node foi criado la em cima
   Fila *head = NULL; // criação da fila - struct node foi criado la em cima
   Fila *tail = NULL;
+  int escolha; //variável das escolhas
+  int vidas = 2; //quantidade de vidas
 
   inserirArvore(&raiz, 101); // montar a arvore - inserção de todos os nos com a função de inserção de arvore
   inserirArvore(&raiz, 125);
@@ -44,8 +46,6 @@ int main(){
   inserirArvore(&raiz, 60);
   inserirArvore(&raiz, 87);
   Arvore *raizOriginal = raiz;
-
-  int escolha; //variável das escolhas
 
   printf("Bem-vindo ao labirinto do País das Maravilhas!!!\n");
   printf("A Alice está perdida e precisa de sua ajuda para voltar pra casa em segurança.\n");
@@ -65,7 +65,7 @@ int main(){
       break;
     }
 
-    percorrerArvore(&raiz, raizOriginal, &head, &tail, escolha); //percorrer
+    percorrerArvore(&raiz, raizOriginal, &head, &tail, escolha, &vidas); //percorrer
 
     if(venceu){
       printf("Parabéns, você chegou ao fim do labirinto!\n");
@@ -74,6 +74,13 @@ int main(){
       liberarArvore(raiz);
       destruirFila(head);
       break;
+    }
+
+    if (vidas <= 0) {
+        printf("Você perdeu todas as vidas. A Rainha de Copas te pegou!\n");
+        liberarArvore(raiz);
+        destruirFila(head);
+        break;
     }
 
   }
@@ -149,7 +156,7 @@ void liberarArvore (Arvore *raiz){ //liberar a árvore
   }
 }
 
-void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha){ //percorrer e verificar as escolhas dentro da árvore
+void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha, int *vidas){ //percorrer e verificar as escolhas dentro da árvore
   if (escolha == 1){ //1 - direita
     *raiz = (*raiz)->dir;
   }else if (escolha == 2){ //2 - esquerda
@@ -174,6 +181,9 @@ void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **ta
     *raiz = raizOriginal; //reseta para a raíz original
 
     inserirFila(head, tail, raizOriginal->num); //reinsere a raiz original na fila para a próxima tentativa
+
+    (*vidas)--;
+    printf("Você tem %d vidas restantes.\n", *vidas);
   }else{
     imprimirFila(*head);  //imprime a fila se o usuário não errou
     printf("Você está indo bem! continue assim.\n");
