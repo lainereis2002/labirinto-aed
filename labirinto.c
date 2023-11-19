@@ -27,7 +27,7 @@ int main(){
   Arvore *raiz = NULL; // criação da arvore - struct node foi criado la em cima
   Fila *head = NULL; // criação da fila - struct node foi criado la em cima
   Fila *tail = NULL;
-  
+
   inserirArvore(&raiz, 101); // montar a arvore - inserção de todos os nos com a função de inserção de arvore
   inserirArvore(&raiz, 125);
   inserirArvore(&raiz, 117);
@@ -156,9 +156,9 @@ void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **ta
     *raiz = (*raiz)->esq;
   }
 
-  if ((*raiz)->dir == NULL && (*raiz)->esq == NULL && (*raiz)->num % 2 == 0){ //se o lado direito ou esquerdo forem nulos, chegou ao fim do labirinto
-    inserirFila(head, tail, (*raiz)->num);
-    imprimirFila(*head);
+  if ((*raiz)->dir == NULL && (*raiz)->esq == NULL && (*raiz)->num % 2 != 0){ //se o lado direito ou esquerdo forem nulos, chegou ao fim do labirinto, e o número é impar
+    //inserirFila(head, tail, (*raiz)->num);
+    //imprimirFila(*head);
     venceu = true; //mensagens na main
   }
 
