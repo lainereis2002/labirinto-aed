@@ -31,7 +31,7 @@ int main() {
   Fila *head = NULL; // criação da fila - struct node foi criado la em cima
   Fila *tail = NULL;
   int escolha; // variável das escolhas
-  int vidas = 3; // quantidade de vidas
+  int vidas = 2; // quantidade de vidas
 
   inserirArvore(&raiz, 101); // montar a arvore - inserção de todos os nos com a função de inserção de arvore
   inserirArvore(&raiz, 125);
@@ -53,14 +53,14 @@ int main() {
   printf("     __          __             _           _                 _   __  __               \n");
   printf("     \\ \\        / /            | |         | |               | | |  \\/  |              \n");
   printf("      \\ \\  /\\  / /__  _ __   __| | ___ _ __| | __ _ _ __   __| | | \\  / | __ _ _______ \n");
-  printf("       \\ \\/  \\/ / _ \\| '_ \\ / _` |/ _ \\ '__| |/ _` | '_ \\ / _` | | |\\/| |/ _` |_  / _ \\\n");
+  printf("       \\ \\/  \\/ / _ \\| '_ \\ / ` |/ _ \\ '__| |/ _` | ' \\ / ` | | |\\/| |/ _` |  / _ \\\n");
   printf("        \\  /\\  / (_) | | | | (_| |  __/ |  | | (_| | | | | (_| | | |  | | (_| |/ /  __/\n");
   printf("         \\/  \\/ \\___/|_| |_|\\__,_|\\___|_|  |_|\\__,_|_| |_|\\__,_| |_|  |_|\\__,_/___\\___|\n");
   printf("\n");
 
   printf("                                      !!!Bem-vindo!!!\n");
   printf("A Alice esta perdida e precisa de sua ajuda para voltar pra casa em seguranca.\n");
-  printf("Voce tera 3 chances para ajuda-la. Caso o contrario, a Rainha de Copas te matara!\n");
+  printf("Voce tera 5 chances para ajuda-la. Caso o contrario, a Rainha de Copas te matara!\n");
   printf("Boa sorte, jogador!\n");
 
   printf("                                         - 101 -\n");
@@ -111,7 +111,7 @@ int main() {
   }
   liberarArvore(raiz);
   destruirFila(head);
-  sleep(10000);
+  sleep(15000);
   return 0;
 }
 
