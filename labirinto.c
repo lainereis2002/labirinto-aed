@@ -1,190 +1,181 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+bool venceu; //para indicar se venceu ou não
 
-//-------- FUNÇÕES DA FILA
-//struct
-typedef struct Node{
+//-------------- FILA ---------------
+typedef struct Fila{ //struct da fila
   int numero;
-  struct Node *prox;
-}Node;
+  struct Fila *prox;
+} Fila;
+void inserirFila (Fila **head, Fila **tail, int n); //inserir numero da árvore na fila 
+void destruirFila (Fila *head); //liberar memória da fila
+void imprimirFila (Fila *head); //printar a fila
 
-// enfileira nó
-void inserirFila(Node **head, Node **tail, int n) {
-  Node *novo = (Node *)malloc(sizeof(Node));
-
-  if (novo != NULL) {
-    novo->numero = n;
-    novo->prox = NULL;
-    
-    if (*head == NULL) {
-      *head = novo;
-      *tail = novo;
-    } else {
-      (*tail)->prox = novo;
-      *tail = novo;
-    }
-  } 
-}
-
-//libera espaço da fila
-void destruirFila(Node *head) {
-  Node *atual = head;
-  Node *proximo;
-
-  while (atual != NULL) {
-     proximo = atual->prox;
-    free(atual);
-    atual = proximo;
-  }
-}
-
-// imprime a fila
-void printFila(Node *head) {
-  while (head != NULL) {
-    printf("%d-> ", head->numero);
-    head = head->prox;
-  }
-  printf("NULL \n");
-}
-
-//--------- FUNÇÕES DA ARVORE
-//struct
-typedef struct arvore {
+//-------------- ÁRVORE ---------------
+typedef struct Arvore{
   int num;
-  struct arvore *esq;
-  struct arvore *dir;
+  struct Arvore *esq;
+  struct Arvore *dir;
 } Arvore;
+void inserirArvore (Arvore **raiz, int n); //inserir nó na árvore
+void liberarArvore (Arvore *raiz); //liberar a árvore
+void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha); //percorrer e verificar as escolhas dentro da árvore
 
-//inserir em arvore
-void inserir(Arvore **t, int n) {
-  if (*t == NULL) {
-    *t = (Arvore *)malloc(sizeof(Arvore));
-    (*t)->esq = NULL;
-    (*t)->dir = NULL;
-    (*t)->num = n;
-  } else {
-    if (n < (*t)->num) {
-      inserir(&(*t)->esq, n);
-    }
-    if (n > (*t)->num) {
-      inserir(&(*t)->dir, n);
-    }
-  }
-}
-
-//liberar arvore
-void liberarArvore(Arvore *raiz) {
-    if (raiz != NULL) {
-        liberarArvore(raiz->esq);  // Liberar subárvore à esquerda
-        liberarArvore(raiz->dir);  // Liberar subárvore à direita
-        free(raiz);               // Liberar o próprio nó
-    }
-}
-
-//função de percorrer a arvore com as condições de 
-//(if a escolha recebida for de percorrer para direita:
-// 1. o ponteiro agr vai verificar se esta apontando p null (if estivar imprima que o usuario ganhou e chegou ao final, se nao faça o ponteiro apontar para direita),
-// 2. vai chamar a função de inserir em fila e armazenas esse nó, 
-// 3. mostrar a fila para o usuario com a função de printar fila)
-//(if a escolha recebida for de percorrer para esquerda, 
-// 1. o ponteiro agr vai verificar se esta apontando p null (if estivar imprima que o usuario ganhou e chegou ao final, se nao faça o ponteiro apontar para esquerda
-// 2. chamar a função de inserir em fila e armazenar esse no,
-// 3. imprimir a fila para o usuario)
-void percorrerArvore(Arvore *raiz, Node **head, int escolha) {//troquei Fila *head por Node *head
-  Arvore *auxiliar = raiz; //ponteiro auxiliar p percorrer a arvore e n trar a raiz
-  imprimirFila(*head); //tive que trocar por head, pq n tava achando fila (não tem criado com o nome fila)
-
-  switch(escolha){
-    case 1:
-      if (auxiliar->dir == NULL){
-        printf("Parabéns! Você chegou ao final do labirinto!\n");
-        break;
-      } 
-
-      if (auxiliar->dir->num % 2 == 0){
-        printf("Você errou! Voltando para o início.\n");
-        inserirFila(head, head, auxiliar->num);
-        *auxiliar = *raiz; //???? a value of type "Arvore **" cannot be assigned to an entity of type "Arvore"
-        break;
-      }else{ //ainda não chegou no final
-        auxiliar = auxiliar->dir; //anda o auxiliar para a direita
-        inserirFila(head, head, auxiliar->num); //coloca o numero na fila para depois ser printado
-      }
-    case 2:
-      if (auxiliar->esq == NULL){
-        inserirFila(head, head, auxiliar->num);
-        printf("Parabéns! Você chegou ao final do labirinto!\n");
-        break;
-      } 
-
-      if (auxiliar->esq->num % 2 == 0){
-        printf("Você errou! Voltando para o início.\n");
-        inserirFila(head, head, auxiliar->num);
-        *auxiliar = *raiz; //???? a value of type "Arvore **" cannot be assigned to an entity of type "Arvore"
-        break;
-      }else{
-        inserirFila(head, head, auxiliar->num);
-        auxiliar = auxiliar->esq;
-      }
-  }
-}
-
+//-------------- MAIN --------------
 int main(){
-  //criação da arvore - struct node foi criado la em cima
-  Arvore *raiz = NULL;
-  //montar a arvore - inserção de todos os nos com a função de inserção de arvore 
-  inserir(&raiz, 101);
-  inserir(&raiz, 125);
-  inserir(&raiz, 117);
-  inserir(&raiz, 110);
-  inserir(&raiz, 120);
-  inserir(&raiz, 140);
-  inserir(&raiz, 139);
-  inserir(&raiz, 155);
-  inserir(&raiz, 55);
-  inserir(&raiz, 10);
-  inserir(&raiz, 73);
-  inserir(&raiz, 7);
-  inserir(&raiz, 20);
-  inserir(&raiz, 60);
-  inserir(&raiz, 87);
+  Arvore *raiz = NULL; // criação da arvore - struct node foi criado la em cima
+  Fila *head = NULL; // criação da fila - struct node foi criado la em cima
+  Fila *tail = NULL;
+  
+  inserirArvore(&raiz, 101); // montar a arvore - inserção de todos os nos com a função de inserção de arvore
+  inserirArvore(&raiz, 125);
+  inserirArvore(&raiz, 117);
+  inserirArvore(&raiz, 110);
+  inserirArvore(&raiz, 120);
+  inserirArvore(&raiz, 140);
+  inserirArvore(&raiz, 139);
+  inserirArvore(&raiz, 155);
+  inserirArvore(&raiz, 55);
+  inserirArvore(&raiz, 10);
+  inserirArvore(&raiz, 73);
+  inserirArvore(&raiz, 7);
+  inserirArvore(&raiz, 20);
+  inserirArvore(&raiz, 60);
+  inserirArvore(&raiz, 87);
+  Arvore *raizOriginal = raiz;
 
-  //criação da fila - struct node foi criado la em cima
-  Node *head = NULL;
-  Node *tail = NULL;
-  //int valorFila;
-  //ja empilha o valor da raiz da arvore que é o primeiro no p mostrar
-  inserirFila(&head, &tail, 300); //exemplo
-
-  //varivael das escolhas
-  int escolha;
+  int escolha; //variável das escolhas
 
   printf("Bem-vindo ao labirinto do País das Maravilhas!!!\n");
   printf("A Alice está perdida e precisa de sua ajuda para voltar pra casa em segurança.\n");
   printf("Você terá 5 chances para ajudá-la. Caso o contrário, a Rainha de Copas te matará!\n");
   printf("Boa sorte, jogador!\n");
 
-  inserirFila(head, tail, 101);
+  inserirFila(&head, &tail, 101); //inserindo a raiz como primeiro elementa da fila
 
-  while (1){
+  while(1){
     printf("\nEscolha:\n");
     printf("1 - Direita\n");
     printf("2 - Esquerda\n");
     printf("3 - Sair\n");
     scanf("%d", &escolha);
 
-    //caso de saida do jogo
-    if(escolha != 1 || escolha != 2){
+    if (escolha != 1 && escolha != 2 ){ // caso de saida do jogo
       break;
     }
 
-    //percorrer
-    percorrerArvore(&raiz, &head, &escolha); 
+    percorrerArvore(&raiz, raizOriginal, &head, &tail, escolha); //percorrer
 
-    //liberar a arvore 
-    liberarArvore(raiz); //como liberar uma arvore completa? no por no ou so a estrutura toda
+    if(venceu){
+      printf("Parabéns, você chegou ao fim do labirinto!\n");
+      printf("Alice chegou em segurança em casa.\n");
+      printf("VOCÊ VENCEU O JOGO!!!\n");
+      liberarArvore(raiz);
+      destruirFila(head);
+      break;
+    }
+
   }
-
+  liberarArvore(raiz);
   destruirFila(head);
   return 0;
+}
+
+//-------------- FUNÇÕES DA FILA --------------
+void inserirFila (Fila **head, Fila **tail, int n){ //inserir numero da árvore na fila
+  Fila *novo = (Fila *)malloc(sizeof(Fila));
+
+  if(novo != NULL){
+    novo->numero = n;
+    novo->prox = NULL;
+
+    if(*head == NULL){
+      *head = novo;
+      *tail = novo;
+    }else{
+      (*tail)->prox = novo;
+      *tail = novo;
+    }
+  }
+}
+
+void destruirFila (Fila *head){ //liberar memória da fila
+  Fila *atual = head;
+  Fila *proximo;
+
+  while(atual != NULL){
+    proximo = atual->prox;
+    free(atual);
+    atual = proximo;
+  }
+}
+
+void imprimirFila(Fila *head){ //printar a fila
+  while (head != NULL){
+    printf("%d", head->numero);
+    if (head->prox != NULL) { //Verifica se o próximo é NULL antes de imprimir a seta e avançar
+      printf(" -> ");
+      head = head->prox;
+    }else{
+      break; // Se o próximo é NULL, pare o loop
+    }
+  }
+  printf("\n");
+}
+
+//-------------- FUNÇÕES DA ÁRVORE --------------
+void inserirArvore (Arvore **raiz, int n){ //inserir nó na árvore
+  if(*raiz == NULL){
+    *raiz = (Arvore *)malloc(sizeof(Arvore));
+    (*raiz)->esq = NULL;
+    (*raiz)->dir = NULL;
+    (*raiz)->num = n;
+  }else{
+    if(n < (*raiz)->num){
+      inserirArvore(&(*raiz)->esq, n);
+    }
+    if (n > (*raiz)->num){
+      inserirArvore(&(*raiz)->dir, n);
+    }
+  }
+}
+
+void liberarArvore (Arvore *raiz){ //liberar a árvore
+  if (raiz != NULL){
+    liberarArvore(raiz->esq); //Liberar subárvore à esquerda
+    liberarArvore(raiz->dir); //Liberar subárvore à direita
+    free(raiz); //Liberar o próprio nó
+  }
+}
+
+void percorrerArvore(Arvore **raiz, Arvore *raizOriginal, Fila **head, Fila **tail, int escolha){ //percorrer e verificar as escolhas dentro da árvore
+  if (escolha == 1){ //1 - direita
+    *raiz = (*raiz)->dir;
+  }else if (escolha == 2){ //2 - esquerda
+    *raiz = (*raiz)->esq;
+  }
+
+  if ((*raiz)->dir == NULL && (*raiz)->esq == NULL && (*raiz)->num % 2 == 0){ //se o lado direito ou esquerdo forem nulos, chegou ao fim do labirinto
+    inserirFila(head, tail, (*raiz)->num);
+    imprimirFila(*head);
+    venceu = true; //mensagens na main
+  }
+
+  inserirFila(head, tail, (*raiz)->num);
+
+  if((*raiz)->num % 2 == 0){ //se o num for par
+    printf("Você errou o caminho, voltando para o início do labirinto.\n");
+    imprimirFila(*head);
+
+    destruirFila(*head);
+    *head = NULL;
+    *tail = NULL;
+    *raiz = raizOriginal; //reseta para a raíz original
+
+    inserirFila(head, tail, raizOriginal->num); //reinsere a raiz original na fila para a próxima tentativa
+  }else{
+    imprimirFila(*head);  //imprime a fila se o usuário não errou
+    printf("Você está indo bem! continue assim.\n");
+  }
 }
