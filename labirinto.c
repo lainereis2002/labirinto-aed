@@ -111,7 +111,7 @@ int main() {
   }
   liberarArvore(raiz);
   destruirFila(head);
-  sleep(5000);
+  sleep(10000);
   return 0;
 }
 
