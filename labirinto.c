@@ -52,6 +52,16 @@ int main() {
   printf("A Alice está perdida e precisa de sua ajuda para voltar pra casa em segurança.\n");
   printf("Você terá 5 chances para ajudá-la. Caso o contrário, a Rainha de Copas te matará!\n");
   printf("Boa sorte, jogador!\n");
+  printf("\n");
+
+  printf("           - 101 -\n");
+  printf("          /       \\\n");
+  printf("         /         \\\n");
+  printf("    -  55          125  -\n");
+  printf("     /   \\        /   \\\n");
+  printf("   10    73      6     7\n");
+  printf("   / \\   / \\    / \\   / \\\n");
+  printf("  7  20 60  87 10 20 139 155\n");
 
   inserirFila(&head, &tail, 101); // inserindo a raiz como primeiro elementa da fila
 
