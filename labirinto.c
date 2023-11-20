@@ -100,7 +100,7 @@ int main() {
       ordenarFila(&head); // chama a função para ordenar a fila
       imprimirFila(head); // imprime a fila ordenada
 
-      printf("Encerrando o jogo...");
+      printf("\nEncerrando o jogo...");
       
       liberarArvore(raiz);
       destruirFila(head);
