@@ -82,6 +82,9 @@ int main() {
     scanf("%d", &escolha);
 
     if (escolha != 1 && escolha != 2) { // caso de saida do jogo
+      printf("Encerrando o jogo...");
+      liberarArvore(raiz);
+      destruirFila(head);
       break;
     }
 
@@ -104,6 +107,7 @@ int main() {
 
     if (vidas <= 0) {
       printf("Voce perdeu todas as vidas. A Rainha de Copas te pegou!\n");
+      printf("Encerrando o jogo...");
       liberarArvore(raiz);
       destruirFila(head);
       break;
