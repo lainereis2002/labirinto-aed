@@ -109,7 +109,7 @@ int main() {
 
     if (vidas <= 0) {
       printf("Voce perdeu todas as vidas. A Rainha de Copas te pegou!\n");
-      printf("Encerrando o jogo...");
+      printf("\nEncerrando o jogo...");
       liberarArvore(raiz);
       destruirFila(head);
       break;
