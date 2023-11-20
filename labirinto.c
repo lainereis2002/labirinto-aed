@@ -115,7 +115,7 @@ int main() {
   }
   liberarArvore(raiz);
   destruirFila(head);
-  sleep(15000);
+  sleep(15000); //aguardo de 15 seg para quem jogar pelo arquivo .exe
   return 0;
 }
 
