@@ -99,6 +99,8 @@ int main() {
       printf("Agora voce pode jogar na Mega da Virada :)\n");
       ordenarFila(&head); // chama a função para ordenar a fila
       imprimirFila(head); // imprime a fila ordenada
+
+      printf("Encerrando o jogo...");
       
       liberarArvore(raiz);
       destruirFila(head);
