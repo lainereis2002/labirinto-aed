@@ -15,10 +15,10 @@ Aqui nesse jogo, você irá ajudar Alice a encontrar a saída, mas ao contrário
 ### 🎯Objetivo do Jogo
 O objetivo a ser atingido no jogo, é encontrar o caminho que não possui obstáculos para que o jogador ajude Alice a achar a saída do labirinto. Incentivando, dessa forma, o jogador a decorar suas tentativas falhas para não correr o risco de cair na mesma rota e perder mais uma vida.
 1. O jogador terá a cada tentativa duas opções para escolher durante sua partida, a de seguir pela direita ou esquerda.
-2. O jogador terá a possibilidade de visualizar seus caminhos já percorridos como tentativa. (R D D E E E D D D D E E E E F) R - raiz / D - direita / E - esquerda
-3. O jogador terá direito a x vidas
+2. O jogador terá a possibilidade de visualizar seus caminhos já percorridos como tentativa.
+3. O jogador terá direito a 3 vidas
 4. O jogador poderá desistir das suas tentativas e encerrar o jogo.
-5. Ao final do jogo, o jogador terá a possibilidade de ver quais números eram os obstáculos de forma ordenada para entender a lógica deles.
+5. Ao final do jogo, o jogador terá a possibilidade de ver quais números eram o caminho de forma ordenada para entender a lógica deles.
 
 ---
 
